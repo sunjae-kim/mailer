@@ -1,5 +1,6 @@
 import nodemailer from 'nodemailer';
 import path from 'path';
+import fs from 'fs';
 import { getAuth, getMailList, info } from './input';
 
 async function main() {
@@ -23,6 +24,7 @@ async function main() {
       })
       .catch((error) => {
         console.log(`${name}에게 ${filePath} 파일 전송 : 실패 ❌`);
+        fs.writeFileSync(path.join(curDir, 'error.log'), JSON.stringify(error));
         console.log(error);
       });
   });
