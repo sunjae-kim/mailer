@@ -16,7 +16,12 @@ async function main() {
       .sendMail({
         from: auth.user,
         to: email,
-        attachments: [{ path: filePath }],
+        attachments: [
+          {
+            path: filePath,
+            contentType: 'application/pdf',
+          },
+        ],
         ...info,
       })
       .then(() => {
